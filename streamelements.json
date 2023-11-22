@@ -1,0 +1,72 @@
+{
+  "configs": [
+    {
+      "types": {
+        "cheer": [
+          {
+            "conditions": [],
+            "outcomes": [
+              {
+                "message": "Hey $streamer, $user just sent you $amount bits!",
+                "type": "chat"
+              }
+            ],
+            "allowsOtherEventsToTrigger": true,
+            "playTime": "20"
+          },
+          {
+            "name": "Explosion",
+            "conditions": [
+              {
+                "min": 2000.0,
+                "type": "range"
+              }
+            ],
+            "outcomes": [
+              {
+                "command": "summon minecraft:tnt ~ ~ ~",
+                "executeAsSelf": true,
+                "type": "command",
+                "displayName": "tnt"
+              }
+            ],
+            "allowsOtherEventsToTrigger": true
+          },
+          {
+            "name": "clear",
+            "conditions": [
+              {
+                "min": 25000.0,
+                "type": "range"
+              }
+            ],
+            "outcomes": [
+              {
+                "command": "fill -29 78 30 -20 90 40 air",
+                "type": "command"
+              }
+            ],
+            "triggersFromAnyConditionMet": true
+          }
+        ],
+        "tip": [
+          {
+            "conditions": [],
+            "outcomes": [
+              {
+                "message": "Hey $streamer, $user just tipped $$amount!",
+                "type": "chat"
+              }
+            ]
+          }
+        ]
+      },
+      "queue": [
+        "host+subscriber+cheer",
+        "follow"
+      ]
+    }
+  ],
+  "init": [],
+  "type": "streamelements"
+}
