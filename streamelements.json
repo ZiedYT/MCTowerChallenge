@@ -15,38 +15,57 @@
             "playTime": "20"
           },
           {
-            "name": "Explosion",
-            "conditions": [
-              {
-                "min": 2000.0,
-                "type": "range"
-              }
-            ],
-            "outcomes": [
-              {
-                "command": "summon minecraft:tnt ~ ~ ~",
-                "executeAsSelf": true,
-                "type": "command",
-                "displayName": "tnt"
-              }
-            ],
-            "allowsOtherEventsToTrigger": true
-          },
-          {
             "name": "clear",
             "conditions": [
               {
-                "min": 25000.0,
+                "min": 2500.0,
                 "type": "range"
               }
             ],
             "outcomes": [
               {
-                "command": "fill -29 78 30 -20 90 40 air",
+                "command": "fill -32 77 47 -17 97 32 air",
                 "type": "command"
               }
             ],
-            "triggersFromAnyConditionMet": true
+            "triggersFromAnyConditionMet": true,
+            "allowsOtherEventsToTrigger": true
+          },
+          {
+            "name": "Explosion",
+            "conditions": [
+              {
+                "min": 500.0,
+                "type": "range"
+              }
+            ],
+            "outcomes": [
+              {
+                "command": "/execute as @p[x=-33, dx=18,z=31,dz=18,y=76,dy=23] run summon minecraft:tnt ~ ~ ~ {Fuse:20}",
+                "executeAsSelf": true,
+                "type": "command",
+                "displayName": "tnt"
+              },
+              {
+                "command": "/execute unless entity @p[y=77,dy=22] as @p[x=-33, dx=18,z=31,dz=18] run summon minecraft:tnt ~ 98 ~ {Fuse:20}",
+                "executeAsSelf": true,
+                "type": "command",
+                "displayName": "tnt high"
+              },
+              {
+                "command": "/execute unless entity @p[x=-33, dx=18,z=31,dz=18] run summon tnt -24 98 40 {Fuse:20}",
+                "executeAsSelf": true,
+                "type": "command",
+                "displayName": "tnt outside"
+              },
+              {
+                "command": "/execute as run summon tnt -24 98 40 {Fuse:20}",
+                "executeAsSelf": true,
+                "type": "command",
+                "displayName": "tnt outside high",
+                "disabled": true
+              }
+            ]
           }
         ],
         "tip": [
