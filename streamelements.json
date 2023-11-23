@@ -28,8 +28,7 @@
                 "type": "command"
               }
             ],
-            "triggersFromAnyConditionMet": true,
-            "allowsOtherEventsToTrigger": true
+            "triggersFromAnyConditionMet": true
           },
           {
             "name": "Explosion",
