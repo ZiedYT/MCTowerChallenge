@@ -24,7 +24,7 @@
             ],
             "outcomes": [
               {
-                "command": "fill -32 77 47 -17 97 32 air",
+                "command": "execute as @p[scores={counterSeconds =1..}] run fill -32 77 47 -17 97 32 air",
                 "type": "command"
               }
             ],
@@ -46,13 +46,13 @@
                 "displayName": "tnt"
               },
               {
-                "command": "/execute unless entity @p[y=77,dy=22] as @p[x=-33, dx=18,z=31,dz=18] run summon minecraft:tnt ~ 98 ~ {Fuse:20}",
+                "command": "/execute unless entity @p[y=77,dy=22] as @p[scores={counterSeconds =1..},x=-33, dx=18,z=31,dz=18] run summon minecraft:tnt ~ 98 ~ {Fuse:20}",
                 "executeAsSelf": true,
                 "type": "command",
                 "displayName": "tnt high"
               },
               {
-                "command": "/execute unless entity @p[x=-33, dx=18,z=31,dz=18] run summon tnt -24 98 40 {Fuse:20}",
+                "command": "/execute unless entity @p[x=-33, dx=18,z=31,dz=18] as @p[scores={counterSeconds =1..}] run summon tnt -24 98 40 {Fuse:20}",
                 "executeAsSelf": true,
                 "type": "command",
                 "displayName": "tnt outside"
