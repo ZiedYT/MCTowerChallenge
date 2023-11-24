@@ -4,17 +4,6 @@
       "types": {
         "cheer": [
           {
-            "conditions": [],
-            "outcomes": [
-              {
-                "message": "Hey $streamer, $user just sent you $amount bits!",
-                "type": "chat"
-              }
-            ],
-            "allowsOtherEventsToTrigger": true,
-            "playTime": "20"
-          },
-          {
             "name": "clear",
             "conditions": [
               {
@@ -31,7 +20,8 @@
             "triggersFromAnyConditionMet": true
           },
           {
-            "name": "Explosion",
+            "name": "Explosion OLD ",
+            "disabled": true,
             "conditions": [
               {
                 "min": 500.0,
@@ -64,18 +54,92 @@
                 "displayName": "tnt outside high",
                 "disabled": true
               }
-            ]
-          }
-        ],
-        "tip": [
+            ],
+            "allowsOtherEventsToTrigger": true
+          },
           {
+            "name": "TNT",
             "conditions": [],
             "outcomes": [
               {
-                "message": "Hey $streamer, $user just tipped $$amount!",
-                "type": "chat"
+                "times": "999999999999999999",
+                "outcome": {
+                  "events": [
+                    {
+                      "name": "decrease",
+                      "conditions": [
+                        {
+                          "calc": "-",
+                          "value1": "amount",
+                          "value2": "100",
+                          "variableName": "amount",
+                          "type": "math",
+                          "displayName": "for loop"
+                        },
+                        {
+                          "optionalVariableName": "amount",
+                          "min": 0.0,
+                          "type": "range",
+                          "displayName": "break cond"
+                        },
+                        {
+                          "calc": "/",
+                          "value1": "amount",
+                          "value2": "10",
+                          "variableName": "duration",
+                          "type": "math",
+                          "displayName": "fuse duration "
+                        },
+                        {
+                          "calc": "+",
+                          "value1": "duration",
+                          "value2": "10",
+                          "variableName": "duration",
+                          "type": "math",
+                          "displayName": "fuse duration "
+                        }
+                      ],
+                      "outcomes": [
+                        {
+                          "message": "hi $duration",
+                          "type": "chat",
+                          "disabled": true
+                        },
+                        {
+                          "command": "/execute as @p[x=-33, dx=18,z=31,dz=18,y=76,dy=23] run summon minecraft:tnt ~ ~ ~ {Fuse:$duration}",
+                          "executeAsSelf": true,
+                          "type": "command",
+                          "displayName": "tnt inside"
+                        },
+                        {
+                          "command": "/execute unless entity @p[y=77,dy=22] as @p[scores={counterSeconds =1..},x=-33, dx=18,z=31,dz=18] run summon minecraft:tnt ~ 98 ~ {Fuse:$duration}",
+                          "executeAsSelf": true,
+                          "type": "command",
+                          "displayName": "tnt high"
+                        },
+                        {
+                          "command": "/execute unless entity @p[x=-33, dx=18,z=31,dz=18] as @p[scores={counterSeconds =1..}] run summon tnt -24 98 40 {Fuse:$duration}",
+                          "executeAsSelf": true,
+                          "type": "command",
+                          "displayName": "tnt outside"
+                        }
+                      ],
+                      "allowsOtherEventsToTrigger": true,
+                      "delay": "0",
+                      "cooldown": "0"
+                    }
+                  ],
+                  "type": "event"
+                },
+                "breakCondition": {
+                  "optionalVariableName": "amount",
+                  "max": 0.0,
+                  "type": "range"
+                },
+                "type": "repeat"
               }
-            ]
+            ],
+            "delay": "0"
           }
         ]
       },
