@@ -93,13 +93,46 @@
                         {
                           "calc": "+",
                           "value1": "duration",
-                          "value2": "10",
+                          "value2": "20",
                           "variableName": "duration",
                           "type": "math",
                           "displayName": "fuse duration "
                         }
                       ],
                       "outcomes": [
+                        {
+                          "times": "2",
+                          "outcome": {
+                            "events": [
+                              {
+                                "conditions": [],
+                                "outcomes": [
+                                  {
+                                    "command": "/execute as @p[x=-33, dx=18,z=31,dz=18,y=76,dy=23] run summon minecraft:tnt ~ ~ ~ {Fuse:$duration}",
+                                    "executeAsSelf": true,
+                                    "type": "command",
+                                    "displayName": "inside"
+                                  },
+                                  {
+                                    "command": "/execute unless entity @p[y=77,dy=22] as @p[scores={counterSeconds =1..},x=-33, dx=18,z=31,dz=18] run summon minecraft:tnt ~ 98 ~ {Fuse:$duration}",
+                                    "executeAsSelf": true,
+                                    "type": "command",
+                                    "displayName": "high"
+                                  },
+                                  {
+                                    "command": "/execute unless entity @p[x=-33, dx=18,z=31,dz=18] as @p[scores={counterSeconds =1..}] run summon tnt -24 98 40 {Fuse:$duration}",
+                                    "executeAsSelf": true,
+                                    "type": "command",
+                                    "displayName": "outside"
+                                  }
+                                ],
+                                "allowsOtherEventsToTrigger": true
+                              }
+                            ],
+                            "type": "event"
+                          },
+                          "type": "repeat"
+                        },
                         {
                           "message": "hi $duration",
                           "type": "chat",
@@ -109,19 +142,22 @@
                           "command": "/execute as @p[x=-33, dx=18,z=31,dz=18,y=76,dy=23] run summon minecraft:tnt ~ ~ ~ {Fuse:$duration}",
                           "executeAsSelf": true,
                           "type": "command",
-                          "displayName": "tnt inside"
+                          "displayName": "tnt inside",
+                          "disabled": true
                         },
                         {
                           "command": "/execute unless entity @p[y=77,dy=22] as @p[scores={counterSeconds =1..},x=-33, dx=18,z=31,dz=18] run summon minecraft:tnt ~ 98 ~ {Fuse:$duration}",
                           "executeAsSelf": true,
                           "type": "command",
-                          "displayName": "tnt high"
+                          "displayName": "tnt high",
+                          "disabled": true
                         },
                         {
                           "command": "/execute unless entity @p[x=-33, dx=18,z=31,dz=18] as @p[scores={counterSeconds =1..}] run summon tnt -24 98 40 {Fuse:$duration}",
                           "executeAsSelf": true,
                           "type": "command",
-                          "displayName": "tnt outside"
+                          "displayName": "tnt outside",
+                          "disabled": true
                         }
                       ],
                       "allowsOtherEventsToTrigger": true,
