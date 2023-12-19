@@ -93,34 +93,78 @@
                         {
                           "calc": "+",
                           "value1": "duration",
-                          "value2": "20",
+                          "value2": "25",
                           "variableName": "duration",
                           "type": "math",
                           "displayName": "fuse duration "
+                        },
+                        {
+                          "value1": "-1",
+                          "value2": "1",
+                          "variableName": "offsetX",
+                          "type": "randomNumber",
+                          "displayName": "offsetX"
+                        },
+                        {
+                          "value1": "-1",
+                          "value2": "1",
+                          "variableName": "offsetY",
+                          "type": "randomNumber",
+                          "displayName": "offsetY"
+                        },
+                        {
+                          "value1": "-31",
+                          "value2": "-17",
+                          "variableName": "offsetCenterX",
+                          "type": "randomNumber",
+                          "displayName": "offsetCenterX"
+                        },
+                        {
+                          "value1": "33",
+                          "value2": "47",
+                          "variableName": "offsetCenterY",
+                          "type": "randomNumber",
+                          "displayName": "offsetCenterY"
+                        },
+                        {
+                          "calc": "*",
+                          "value1": "offsetY",
+                          "value2": "2",
+                          "variableName": "offsetY",
+                          "type": "math",
+                          "displayName": "offsetY*2"
+                        },
+                        {
+                          "calc": "*",
+                          "value1": "offsetX",
+                          "value2": "2",
+                          "variableName": "offsetX",
+                          "type": "math",
+                          "displayName": "offsetX*2"
                         }
                       ],
                       "outcomes": [
                         {
-                          "times": "2",
+                          "times": "3",
                           "outcome": {
                             "events": [
                               {
                                 "conditions": [],
                                 "outcomes": [
                                   {
-                                    "command": "/execute as @p[x=-33, dx=18,z=31,dz=18,y=76,dy=23] run summon minecraft:tnt ~ ~ ~ {Fuse:$duration}",
+                                    "command": "/execute as @p[x=-30, dx=11,z=34,dz=11,y=76,dy=23] run summon minecraft:tnt ~$offsetX ~ ~$offsetY {Fuse:$duration}",
                                     "executeAsSelf": true,
                                     "type": "command",
                                     "displayName": "inside"
                                   },
                                   {
-                                    "command": "/execute unless entity @p[y=77,dy=22] as @p[scores={counterSeconds =1..},x=-33, dx=18,z=31,dz=18] run summon minecraft:tnt ~ 98 ~ {Fuse:$duration}",
+                                    "command": "/execute unless entity @p[y=77,dy=22] as @p[scores={counterSeconds =1..},x=-30, dx=11,z=34,dz=11] run summon minecraft:tnt ~$offsetX 98 ~$offsetY {Fuse:$duration}",
                                     "executeAsSelf": true,
                                     "type": "command",
                                     "displayName": "high"
                                   },
                                   {
-                                    "command": "/execute unless entity @p[x=-33, dx=18,z=31,dz=18] as @p[scores={counterSeconds =1..}] run summon tnt -24 98 40 {Fuse:$duration}",
+                                    "command": "/execute unless entity @p[x=-30, dx=11,z=34,dz=11] as @p[scores={counterSeconds =1..}] run summon tnt $offsetCenterX 98 $offsetCenterY {Fuse:$duration}",
                                     "executeAsSelf": true,
                                     "type": "command",
                                     "displayName": "outside"
