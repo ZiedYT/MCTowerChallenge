@@ -62,7 +62,7 @@
             "conditions": [],
             "outcomes": [
               {
-                "times": "999999999999999999",
+                "times": "30",
                 "outcome": {
                   "events": [
                     {
@@ -145,11 +145,18 @@
                       ],
                       "outcomes": [
                         {
-                          "times": "3",
+                          "times": "2",
                           "outcome": {
                             "events": [
                               {
-                                "conditions": [],
+                                "conditions": [
+                                  {
+                                    "optionalVariableName": "amount",
+                                    "min": 0.0,
+                                    "type": "range",
+                                    "displayName": "amount>0"
+                                  }
+                                ],
                                 "outcomes": [
                                   {
                                     "command": "/execute as @p[x=-30, dx=11,z=34,dz=11,y=76,dy=23] run summon minecraft:tnt ~$offsetX ~ ~$offsetY {Fuse:$duration}",
